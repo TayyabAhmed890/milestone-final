@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Resume Builder</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Include jsPDF and html2canvas from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <!-- Resume Builder Form -->
+    <div class="container">
+      <h1>Dynamic Resume Builder</h1>
+      <form id="resumeForm">
+        <!-- Toggle Dark/Light Mode -->
+        <div class="theme-switch">
+          <label class="switch">
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider"></span>
+          </label>
+          <span id="themeLabel">Light Mode</span>
+        </div>
+        <!-- add Profile Image -->
+        <div class="form-group">
+            <label for="profileImage">Profile Image:</label>
+            <input
+              type="file"
+              id="profileImage"
+              name="profileImage"
+              accept="image/*"
+            />
+          </div>
+        <!-- Personal Information Section -->
+        <h2>Personal Information</h2>
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="Enter Your Name Here..."
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter Your Email Here..."
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Enter Your Phone Number..."
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea
+            id="address"
+            name="address"
+            rows="2"
+            placeholder="Enter Your Address Here..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Education Section -->
+        <h2>Education</h2>
+        <div class="form-group">
+          <label for="education">Education Details:</label>
+          <textarea
+            id="education"
+            name="education"
+            rows="3"
+            placeholder="Enter your education details here..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Work Experience Section -->
+        <h2>Work Experience</h2>
+        <div class="form-group">
+          <label for="experience">Experience Details:</label>
+          <textarea
+            id="experience"
+            name="experience"
+            rows="3"
+            placeholder="Enter your experience details here..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Skills Section -->
+        <h2>Skills</h2>
+        <div class="form-group">
+          <label for="skills">Skills:</label>
+          <textarea
+            id="skills"
+            name="skills"
+            rows="2"
+            placeholder="Enter your skills here..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button type="button" class="submit-btn" onclick="generateResume()">
+            Generate Resume
+          </button>
+          <button class="download-btn" onclick="downloadResume()">
+            Download Resume
+          </button>
+          <div class="form-group">
+            <button onclick="generateShareableLink()" class="download-btn" id="share-btn">Generate Shareable Link</button>
+        </div>
+        
+        <div id="shareableLinkContainer" style="margin-top: 20px;"></div>
+        
+        </div>
+        <h4> &copy;2024 | Tayyab Ahmed</h4>
+      </form>
+    </div>
+
+    <!-- Resume Preview -->
+    <div class="resume-preview" id="resumePreview">
+      <div class="resume-header">
+        <img
+          id="previewImage"
+          src=""
+          alt="Profile Picture"
+          style="display: none"
+        />
+        <div class="resume-info">
+          <h1 contenteditable="true" id="previewFullName">John Doe</h1>
+          <p contenteditable="true" id="previewEmail">john@example.com</p>
+          <p contenteditable="true" id="previewPhone">+1234567890</p>
+          <p contenteditable="true" id="previewAddress">
+            1234 Main St, City, Country
+          </p>
+        </div>
+      </div>
+      <hr />
+      <h2>Education</h2>
+      <p contenteditable="true" id="previewEducation">
+        Enter your education details here...
+      </p>
+      <hr />
+      <h2>Work Experience</h2>
+      <p contenteditable="true" id="previewExperience">
+        Enter your experience details here...
+      </p>
+      <hr />
+      <h2>Skills</h2>
+      <p contenteditable="true" id="previewSkills">Enter your skills here...</p>
+    </div>
+    
+
+    <script src="script.js"></script>
+  </body>
+</html>
